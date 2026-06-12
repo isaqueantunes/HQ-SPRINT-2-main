@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universo HQ — Meu Painel</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">UNIVERSO <span>HQ</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item"><a class="nav-link" href="/">Vitrine</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/painel">Meu Painel</a></li>
+        <li class="nav-item ms-2"><span class="badge-usuario">USUÁRIO</span></li>
+        <li class="nav-item ms-2">
+          <span id="nomeUsuario" class="nav-usuario"></span>
+        </li>
+        <li class="nav-item ms-2">
+          <button class="btn-hq danger" id="btnLogout">Sair</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO BANNER ══════════════════════════ -->
+<div class="hero-banner" style="background: var(--red);">
+  <div class="live-dot" style="background:#fff;"></div>
+  <div>
+    <h1>MEU PAINEL</h1>
+    <p>Universo HQ &mdash; explore o catálogo completo de quadrinhos</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════ MAIN ════════════════════════════ -->
+<main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast-hq" style="display:none;"></div>
+
+  <!-- ── INFO DO USUÁRIO ── -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:var(--red);"></div>
+        <div class="card-icon">👤</div>
+        <div class="card-label">Bem-vindo</div>
+        <div class="card-value" id="bvNome" style="font-size:1.8rem;">—</div>
+        <span class="card-pill" style="background:#ffcdd2;color:#b71c1c;">USUÁRIO</span>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:#69ff74;"></div>
+        <div class="card-icon">📚</div>
+        <div class="card-label">HQs disponíveis</div>
+        <div class="card-value" id="statDisp">—</div>
+        <span class="card-pill" style="background:#c8e6c9;color:#1b5e20;">ACERVO</span>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:var(--yellow);"></div>
+        <div class="card-icon">🔢</div>
+        <div class="card-label">Total no catálogo</div>
+        <div class="card-value" id="statTotal">—</div>
+        <span class="card-pill" style="background:#fff9c4;color:#f57f17;">TOTAL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FILTROS + BUSCA ── -->
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div class="section-title mb-0">📖 Catálogo de HQs</div>
+    <div class="d-flex gap-2 flex-wrap">
+      <select id="filtroStatus" class="form-select form-select-sm" style="width:auto;">
+        <option value="">Todos os status</option>
+        <option value="Disponível">✅ Disponível</option>
+        <option value="Esgotado">❌ Esgotado</option>
+        <option value="Reservado">🕐 Reservado</option>
+      </select>
+      <select id="filtroGenero" class="form-select form-select-sm" style="width:auto;">
+        <option value="">Todos os gêneros</option>
+      </select>
+      <input type="text" id="buscaHq" class="form-control form-control-sm" placeholder="🔍 Buscar..." style="width:180px;">
+    </div>
+  </div>
+
+  <!-- ── TABELA (somente leitura) ── -->
+  <div class="hq-table-wrap mb-4">
+    <div class="table-responsive">
+      <table class="table hq-table mb-0">
+        <thead>
+          <tr>
+            <th>Capa</th>
+            <th>Título</th>
+            <th>Editora</th>
+            <th>Gênero</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaHqs">
+          <tr><td colspan="8" class="text-center py-3">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Rodapé informativo -->
+  <div class="info-usuario">
+    <i>👁️ Modo visualização — apenas administradores podem adicionar, editar ou remover HQs.</i>
+  </div>
+
+</main>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <span>UNIVERSO HQ</span> &middot; Painel do Usuário &middot; SENAI — Desenvolvimento Web
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ============================================================
+// painel-usuario.html — JavaScript do painel de visualização
+// ============================================================
+
+// ── Verificar sessão ──────────────────────────────────────────
+(async () => {
+  try {
+    const resp = await fetch('/api/sessao', { credentials: 'include' });
+    if (!resp.ok) { window.location.href = '/login'; return; }
+    const data = await resp.json();
+    // Admin que acessar /painel é redirecionado ao dashboard
+    if (data.user.role === 'admin') { window.location.href = '/dashboard'; return; }
+    document.getElementById('nomeUsuario').textContent = '👤 ' + data.user.username;
+    document.getElementById('bvNome').textContent      = data.user.username;
+  } catch { window.location.href = '/login'; }
+})();
+
+// ── Logout ────────────────────────────────────────────────────
+document.getElementById('btnLogout').addEventListener('click', async () => {
+  await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+  window.location.href = '/login';
+});
+
+// ── Estatísticas ──────────────────────────────────────────────
+async function carregarEstatisticas() {
+  try {
+    const resp  = await fetch('/api/estatisticas', { credentials: 'include' });
+    const stats = await resp.json();
+    document.getElementById('statDisp').textContent  = stats.disponiveis;
+    document.getElementById('statTotal').textContent = stats.totalHqs;
+  } catch { /* silencioso */ }
+}
+
+// ── Carregar HQs ──────────────────────────────────────────────
+let todasHqs = [];
+
+async function carregarHqs() {
+  try {
+    const resp = await fetch('/api/hqs', { credentials: 'include' });
+    todasHqs   = await resp.json();
+    renderizarTabela(todasHqs);
+    popularFiltroGenero();
+  } catch { document.getElementById('tabelaHqs').innerHTML = '<tr><td colspan="8" class="text-center py-3">Erro ao carregar.</td></tr>'; }
+}
+
+function renderizarTabela(hqs) {
+  const tbody = document.getElementById('tabelaHqs');
+  if (!hqs.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-3">Nenhuma HQ encontrada.</td></tr>';
+    return;
+  }
+
+  const statusClasse = { 'Disponível': 's-disponivel', 'Esgotado': 's-esgotado', 'Reservado': 's-reservado' };
+
+  tbody.innerHTML = hqs.map(hq => {
+    const imgSrc = hq.imagem
+      ? hq.imagem.startsWith('http') ? hq.imagem : hq.imagem
+      : null;
+    const capa = imgSrc
+      ? `<img src="${imgSrc}" alt="${hq.titulo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="sem-capa" style="display:none;">SEM<br>CAPA</div>`
+      : `<div class="sem-capa">SEM<br>CAPA</div>`;
+
+    const preco = parseFloat(hq.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const sc    = statusClasse[hq.status] || 's-reservado';
+    const desc  = hq.descricao.length > 60 ? hq.descricao.substring(0, 60) + '…' : hq.descricao;
+
+    return `
+      <tr>
+        <td>${capa}</td>
+        <td><strong>${hq.titulo}</strong></td>
+        <td>${hq.editora}</td>
+        <td>${hq.genero}</td>
+        <td title="${hq.descricao}">${desc}</td>
+        <td>${preco}</td>
+        <td>${hq.estoque} un.</td>
+        <td><span class="status-badge ${sc}">${hq.status}</span></td>
+      </tr>`;
+  }).join('');
+}
+
+function popularFiltroGenero() {
+  const generos = [...new Set(todasHqs.map(h => h.genero))].sort();
+  const sel     = document.getElementById('filtroGenero');
+  generos.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value       = g;
+    opt.textContent = g;
+    sel.appendChild(opt);
+  });
+}
+
+// ── Aplicar filtros ───────────────────────────────────────────
+function aplicarFiltros() {
+  const status = document.getElementById('filtroStatus').value;
+  const genero = document.getElementById('filtroGenero').value;
+  const busca  = document.getElementById('buscaHq').value.toLowerCase();
+
+  let filtradas = todasHqs;
+  if (status) filtradas = filtradas.filter(h => h.status === status);
+  if (genero) filtradas = filtradas.filter(h => h.genero === genero);
+  if (busca)  filtradas = filtradas.filter(h =>
+    h.titulo.toLowerCase().includes(busca) ||
+    h.editora.toLowerCase().includes(busca)
+  );
+
+  renderizarTabela(filtradas);
+}
+
+document.getElementById('filtroStatus').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroGenero').addEventListener('change', aplicarFiltros);
+document.getElementById('buscaHq').addEventListener('input', aplicarFiltros);
+
+// ── Iniciar ───────────────────────────────────────────────────
+carregarEstatisticas();
+carregarHqs();
+</script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universo HQ — Quadrinhos & Mangás</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER / NAVBAR ══════════════════════ -->
+<header class="header-container">
+  <nav class="custom-navbar">
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="Universo HQ">
+    </div>
+
+    <!-- Links -->
+    <ul class="nav-links">
+      <li><a href="#about">SOBRE</a></li>
+      <li><a href="#news">NEWS</a></li>
+      <li><a href="#catalog">CATALOGO</a></li>
+      <li><a href="#contact">CONTATO</a></li>
+    </ul>
+
+    <!-- Ícones -->
+    <div class="nav-icons">
+      <!-- Ícone de usuário — vai para login ou painel conforme sessão -->
+      <i class="fa-solid fa-user user-icon" id="userIconNav" title="Minha conta"></i>
+      <!-- Carrinho com badge de quantidade -->
+      <div class="cart-wrapper" id="cartWrapper" title="Ver carrinho">
+        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+        <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+      </div>
+    </div>
+
+  </nav>
+</header>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>UNIVERSO HQ</h1>
+    <p>NÃO SABE O QUE LER AGORA? EXPLORE <strong>NOSSO CATÁLOGO DE HQS E MANGÁS</strong> COM A CURADORIA DOS <strong>NOSSOS EDITORES.</strong></p>
+    <button class="btn-saiba-mais" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
+      SAIBA MAIS
+    </button>
+  </div>
+  <div class="hero-image">
+    <img src="/assets/img/nerd_mascote__2_-removebg-preview.png" alt="Mascote Nerd">
+  </div>
+</section>
+
+<!-- ══════════════════════════ SOBRE ══════════════════════════ -->
+<section id="about" class="about">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>SOBRE</h2>
+      <p>SOMOS UMA PLATAFORMA CRIADA PARA FÃS DE QUADRINHOS, REUNINDO HISTÓRIAS INCRÍVEIS EM UM SÓ LUGAR. DO CLÁSSICO AO MODERNO, NOSSO OBJETIVO É OFERECER UMA EXPERIÊNCIA PRÁTICA, DINÂMICA E IMERSIVA, CONECTANDO VOCÊ AOS UNIVERSOS MAIS ÉPICOS JÁ CRIADOS. AQUI, CADA HQ É UMA NOVA AVENTURA ESPERANDO PARA INICIAR.</p>
+    </div>
+    <div class="about-img">
+      <div class="circle-bg"></div>
+      <img src="/assets/img/batman-img-removebg-preview.png" alt="Batman">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ NOVIDADES ══════════════════════════ -->
+<section id="news" class="news-section py-5">
+  <div class="container text-center">
+    <h2 class="section-title text-white mb-5">NOVIDADES</h2>
+
+    <div id="carouselNovidades" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row justify-content-center g-4">
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/new-img2.jpg" alt="Superman Absoluto">
+                <h5>SUPERMAN: ABSOLUTO</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/new-img3.jpg" alt="Trecos Estranhos">
+                <h5>TRECOS ESTRANHOS</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/new-img1.jpg" alt="Teia de Venom">
+                <h5>TEIA DE VENOM</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center g-4">
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/cat-img.jpg" alt="One Piece">
+                <h5>ONE PIECE</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/news-img-4.jpg" alt="Mônica Jovem">
+                <h5>MONICA JOVEM</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+              <div class="news-card">
+                <img src="/assets/img/news-img-5.jpg" alt="Batman">
+                <h5>BATMAN</h5>
+                <button class="btn-hq">SAIBA MAIS</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controles -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselNovidades" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselNovidades" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CATÁLOGO ══════════════════════════ -->
+<section id="catalog" class="catalog-section py-5">
+  <div class="container text-center">
+    <p class="titulo-cat mb-0 text-danger fw-bold">NOSSO ACERVO</p>
+    <h2 class="section-title mb-4">CATÁLOGO COMPLETO</h2>
+    <p class="subtitle mb-5">Encontre as melhores histórias em quadrinhos. Novos títulos adicionados toda semana!</p>
+
+    <!-- Filtros dinâmicos (populados via JS) -->
+    <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap" id="filtros">
+      <button class="btn-filter active" data-genero="TODOS">TODOS</button>
+      <!-- Demais gêneros carregados via API -->
+    </div>
+
+    <!-- Estado de carregamento -->
+    <div id="loadingCatalogo" class="loading-state">
+      <i class="fa-solid fa-spinner fa-spin"></i> Carregando catálogo...
+    </div>
+
+    <!-- Grid de cards — populado via JS -->
+    <div class="row g-4" id="gridCatalogo"></div>
+
+    <!-- Estado vazio -->
+    <div id="vazioMsg" style="display:none;" class="vazio-msg">
+      <i class="fa-solid fa-box-open fa-2x mb-2"></i>
+      <p>Nenhuma HQ encontrada para este filtro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTATO ══════════════════════════ -->
+<section id="contact" class="contact-section py-5">
+  <div class="container text-center">
+    <h2 class="section-title mb-4" style="color:#fff;">CONTATO</h2>
+    <p class="subtitle mb-5" style="color:#eee;">Tem dúvidas, sugestões ou quer parceria? Fale com a gente!</p>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="contact-box">
+          <p><i class="fa-solid fa-envelope"></i> contato@universohq.com.br</p>
+          <p><i class="fa-brands fa-instagram"></i> @universohq</p>
+          <p><i class="fa-brands fa-whatsapp"></i> (11) 99999-0000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ MODAL CARRINHO ══════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+
+  <div class="cart-header">
+    <h2><i class="fa-solid fa-cart-shopping"></i> Carrinho</h2>
+    <button class="cart-close" id="cartClose" title="Fechar">✕</button>
+  </div>
+
+  <!-- Lista de itens -->
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <i class="fa-solid fa-box-open fa-2x mb-2"></i>
+      <p>Seu carrinho está vazio.</p>
+      <small>Adicione HQs pelo catálogo!</small>
+    </div>
+  </div>
+
+  <!-- Rodapé do carrinho -->
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">R$ 0,00</span>
+    </div>
+    <div class="cart-total-row cart-total-big">
+      <span>Total</span>
+      <span id="cartTotal">R$ 0,00</span>
+    </div>
+    <button class="cart-btn-comprar" id="btnFinalizar">
+      <i class="fa-solid fa-bolt"></i> FINALIZAR COMPRA
+    </button>
+    <button class="cart-btn-limpar" id="btnLimparCarrinho">
+      <i class="fa-solid fa-trash"></i> Limpar carrinho
+    </button>
+  </div>
+
+</div>
+
+<!-- Modal de confirmação de compra -->
+<div class="modal fade" id="modalSucesso" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content sucesso-modal">
+      <div class="modal-body text-center p-5">
+        <div class="sucesso-icon">🎉</div>
+        <h3 class="sucesso-titulo">Pedido Realizado!</h3>
+        <p class="sucesso-sub" id="sucessoMsg"></p>
+        <div class="sucesso-itens" id="sucessoItens"></div>
+        <button class="cart-btn-comprar mt-4" data-bs-dismiss="modal" style="max-width:260px;margin:0 auto;">
+          CONTINUAR COMPRANDO
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="site-footer">
+  <span>UNIVERSO HQ</span> &middot; Todos os direitos reservados &middot; SENAI — Desenvolvimento Web
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ============================================================
+// index.html — JavaScript: catálogo + carrinho de compras
+// ============================================================
+
+// ── 1. CARRINHO — estado em memória ──────────────────────────
+let carrinho = [];
+
+function salvarCarrinho() {
+  sessionStorage.setItem('hq_carrinho', JSON.stringify(carrinho));
+}
+
+function carregarCarrinhoSalvo() {
+  try {
+    const salvo = sessionStorage.getItem('hq_carrinho');
+    if (salvo) carrinho = JSON.parse(salvo);
+  } catch { carrinho = []; }
+}
+
+// ── 2. ADICIONAR AO CARRINHO ──────────────────────────────────
+function adicionarAoCarrinho(id, titulo, preco, imagem) {
+  const idx = carrinho.findIndex(i => i.id === id);
+  if (idx >= 0) {
+    carrinho[idx].qty += 1;
+  } else {
+    carrinho.push({ id, titulo, preco, imagem, qty: 1 });
+  }
+  salvarCarrinho();
+  atualizarBadge();
+  renderizarCarrinho();
+  abrirCarrinho();
+  animarBadge();
+}
+
+// ── 3. REMOVER / ALTERAR QUANTIDADE ──────────────────────────
+function removerItem(id) {
+  carrinho = carrinho.filter(i => i.id !== id);
+  salvarCarrinho();
+  atualizarBadge();
+  renderizarCarrinho();
+}
+
+function alterarQty(id, delta) {
+  const idx = carrinho.findIndex(i => i.id === id);
+  if (idx < 0) return;
+  carrinho[idx].qty += delta;
+  if (carrinho[idx].qty <= 0) carrinho.splice(idx, 1);
+  salvarCarrinho();
+  atualizarBadge();
+  renderizarCarrinho();
+}
+
+// ── 4. BADGE DO ÍCONE ─────────────────────────────────────────
+function atualizarBadge() {
+  const total = carrinho.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent   = total;
+  badge.style.display = total > 0 ? 'flex' : 'none';
+}
+
+function animarBadge() {
+  const badge = document.getElementById('cartBadge');
+  badge.classList.remove('badge-pop');
+  void badge.offsetWidth;
+  badge.classList.add('badge-pop');
+}
+
+// ── 5. RENDERIZAR LISTA ───────────────────────────────────────
+function renderizarCarrinho() {
+  const container  = document.getElementById('cartItems');
+  const empty      = document.getElementById('cartEmpty');
+  const subtotalEl = document.getElementById('cartSubtotal');
+  const totalEl    = document.getElementById('cartTotal');
+
+  container.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+  if (!carrinho.length) {
+    empty.style.display  = 'flex';
+    subtotalEl.textContent = 'R$ 0,00';
+    totalEl.textContent    = 'R$ 0,00';
+    const fi = document.getElementById('cartFreteInfo');
+    if (fi) fi.remove();
+    return;
+  }
+
+  empty.style.display = 'none';
+  let subtotal = 0;
+
+  carrinho.forEach(item => {
+    subtotal += item.preco * item.qty;
+    const div      = document.createElement('div');
+    div.className  = 'cart-item';
+    const imgSrc   = item.imagem || '/assets/img/logo.png';
+    const itemTot  = (item.preco * item.qty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const precoUn  = parseFloat(item.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    div.innerHTML = `
+      <img src="${imgSrc}" alt="${item.titulo}" onerror="this.src='/assets/img/logo.png'">
+      <div class="cart-item-info">
+        <div class="cart-item-titulo">${item.titulo}</div>
+        <div class="cart-item-preco-unit">${precoUn} / un.</div>
+        <div class="cart-item-controls">
+          <button class="qty-btn" onclick="alterarQty(${item.id}, -1)">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" onclick="alterarQty(${item.id}, +1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-right">
+        <div class="cart-item-total">${itemTot}</div>
+        <button class="cart-item-del" onclick="removerItem(${item.id})" title="Remover">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </div>`;
+    container.appendChild(div);
+  });
+
+  const frete = subtotal > 150 ? 0 : 15;
+  const total = subtotal + frete;
+  subtotalEl.textContent = subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  totalEl.textContent    = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+  let freteEl = document.getElementById('cartFreteInfo');
+  if (!freteEl) {
+    freteEl = document.createElement('div');
+    freteEl.id        = 'cartFreteInfo';
+    freteEl.className = 'cart-frete-info';
+    document.querySelector('.cart-footer').prepend(freteEl);
+  }
+  freteEl.innerHTML = frete === 0
+    ? '<i class="fa-solid fa-truck"></i> Frete <strong>GRÁTIS</strong> 🎉'
+    : `<i class="fa-solid fa-truck"></i> Frete: R$ 15,00 <small>(grátis acima de R$ 150)</small>`;
+}
+
+// ── 6. ABRIR / FECHAR GAVETA ──────────────────────────────────
+function abrirCarrinho() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharCarrinho() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cartWrapper').addEventListener('click', abrirCarrinho);
+document.getElementById('cartClose').addEventListener('click', fecharCarrinho);
+document.getElementById('cartOverlay').addEventListener('click', fecharCarrinho);
+
+// ── 7. LIMPAR CARRINHO ────────────────────────────────────────
+document.getElementById('btnLimparCarrinho').addEventListener('click', () => {
+  if (!carrinho.length) return;
+  if (confirm('Deseja limpar todo o carrinho?')) {
+    carrinho = [];
+    salvarCarrinho();
+    atualizarBadge();
+    renderizarCarrinho();
+  }
+});
+
+// ── 8. FINALIZAR COMPRA (simulação) ──────────────────────────
+document.getElementById('btnFinalizar').addEventListener('click', () => {
+  if (!carrinho.length) return;
+
+  const itensResumo = carrinho.map(i =>
+    `<div class="sucesso-item">
+       <span>${i.titulo} × ${i.qty}</span>
+       <span>${(i.preco * i.qty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+     </div>`
+  ).join('');
+
+  const totalPedido = carrinho.reduce((s, i) => s + i.preco * i.qty, 0);
+  const frete       = totalPedido > 150 ? 0 : 15;
+  const protocolo   = 'HQ-' + Date.now().toString().slice(-8);
+
+  document.getElementById('sucessoMsg').innerHTML =
+    `Protocolo <strong>${protocolo}</strong> — Total: <strong>${(totalPedido + frete).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>`;
+  document.getElementById('sucessoItens').innerHTML = itensResumo;
+
+  fecharCarrinho();
+  new bootstrap.Modal(document.getElementById('modalSucesso')).show();
+
+  carrinho = [];
+  salvarCarrinho();
+  atualizarBadge();
+  renderizarCarrinho();
+});
+
+// ── 9. ÍCONE DE USUÁRIO ───────────────────────────────────────
+document.getElementById('userIconNav').addEventListener('click', async () => {
+  try {
+    const resp = await fetch('/api/sessao', { credentials: 'include' });
+    if (resp.ok) {
+      const data = await resp.json();
+      window.location.href = data.user.role === 'admin' ? '/dashboard' : '/painel';
+    } else {
+      window.location.href = '/login';
+    }
+  } catch { window.location.href = '/login'; }
+});
+
+// ── 10. CATÁLOGO DINÂMICO ─────────────────────────────────────
+let todasHqs = [];
+
+async function carregarCatalogo() {
+  try {
+    const resp = await fetch('/api/public/hqs');
+    todasHqs   = await resp.json();
+    renderizarCards(todasHqs);
+    await carregarFiltros();
+  } catch {
+    document.getElementById('loadingCatalogo').innerHTML =
+      '<i class="fa-solid fa-triangle-exclamation"></i> Erro ao carregar catálogo.';
+  }
+}
+
+function renderizarCards(hqs) {
+  const grid    = document.getElementById('gridCatalogo');
+  const loading = document.getElementById('loadingCatalogo');
+  const vazio   = document.getElementById('vazioMsg');
+
+  loading.style.display = 'none';
+
+  if (!hqs.length) {
+    grid.innerHTML      = '';
+    vazio.style.display = 'block';
+    return;
+  }
+
+  vazio.style.display = 'none';
+  grid.innerHTML = hqs.map(hq => {
+    const imgSrc = hq.imagem || '/assets/img/logo.png';
+    const preco  = parseFloat(hq.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const imgEsc = (hq.imagem || '/assets/img/logo.png').replace(/'/g, "\\'");
+    const titEsc = hq.titulo.replace(/'/g, "\\'");
+
+    return `
+      <div class="col-6 col-md-2 catalog-item" data-genero="${hq.genero}">
+        <div class="catalog-card">
+          <div class="card-img-placeholder">
+            <img src="${imgSrc}" alt="${hq.titulo}" onerror="this.src='/assets/img/logo.png'">
+          </div>
+          <div class="card-body-text">
+            <div class="d-flex justify-content-between align-items-start gap-1">
+              <span class="desc">${hq.titulo}</span>
+              <div class="icons-catalog flex-shrink-0">
+                <span title="${hq.editora}"><i class="fa-solid fa-book-open"></i></span>
+              </div>
+            </div>
+            <div class="card-preco">${preco}</div>
+            <button class="btn-add-cart"
+              onclick="adicionarAoCarrinho(${hq.id}, '${titEsc}', ${hq.preco}, '${imgEsc}')">
+              <i class="fa-solid fa-cart-plus"></i> Adicionar
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function carregarFiltros() {
+  try {
+    const resp      = await fetch('/api/public/generos');
+    const generos   = await resp.json();
+    const container = document.getElementById('filtros');
+
+    generos.forEach(g => {
+      const btn          = document.createElement('button');
+      btn.className      = 'btn-filter';
+      btn.dataset.genero = g;
+      btn.textContent    = g.toUpperCase();
+      container.appendChild(btn);
+    });
+
+    container.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-filter');
+      if (!btn) return;
+      container.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const genero    = btn.dataset.genero;
+      const filtradas = genero === 'TODOS' ? todasHqs : todasHqs.filter(h => h.genero === genero);
+      renderizarCards(filtradas);
+    });
+  } catch { /* silencioso */ }
+}
+
+// ── Inicializar ───────────────────────────────────────────────
+carregarCarrinhoSalvo();
+atualizarBadge();
+renderizarCarrinho();
+carregarCatalogo();
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+/* ============================================================
+   dashboard.css — Painel Admin + Painel Usuário
+   Tema comic book / quadrinhos: bordas ink, sombras offset,
+   tipografia Bangers, fundo pontilhado.
+   ============================================================ */
+
+:root {
+    --ink:      #0d0d0d;
+    --paper:    #fdf6e3;
+    --yellow:   #FFD600;
+    --red:      #E53935;
+    --blue:     #1565C0;
+    --border:   3px solid #0d0d0d;
+    --shadow:   5px 5px 0px #0d0d0d;
+    --shadow-h: 8px 8px 0px #0d0d0d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--paper);
+    background-image: radial-gradient(circle, #00000012 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: 'Nunito', sans-serif;
+    color: var(--ink);
+}
+
+/* ── NAVBAR ── */
+.navbar {
+    background: var(--ink) !important;
+    border-bottom: 4px solid var(--yellow);
+    padding: 0.6rem 1.5rem;
+}
+.navbar-brand {
+    font-family: 'Bangers', cursive; font-size: 2rem;
+    letter-spacing: 2px; color: var(--yellow) !important;
+    text-shadow: 3px 3px 0 var(--red);
+}
+.navbar-brand span { color: #fff; text-shadow: 2px 2px 0 var(--blue); }
+.nav-link { color: #ccc !important; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+.nav-link:hover, .nav-link.active { color: var(--yellow) !important; }
+.navbar-toggler       { border-color: var(--yellow); }
+.navbar-toggler-icon  { filter: invert(1); }
+.nav-usuario          { color: #fff; font-size: 0.85rem; font-weight: 700; }
+
+/* Badges de perfil */
+.badge-admin {
+    background: var(--red); color: #fff; font-family: 'Bangers', cursive;
+    font-size: 0.75rem; letter-spacing: 1px; padding: 3px 10px;
+    border-radius: 4px; border: 2px solid #fff;
+}
+.badge-usuario {
+    background: var(--blue); color: #fff; font-family: 'Bangers', cursive;
+    font-size: 0.75rem; letter-spacing: 1px; padding: 3px 10px;
+    border-radius: 4px; border: 2px solid #fff;
+}
+
+/* ── HERO BANNER ── */
+.hero-banner {
+    background: var(--blue); border-bottom: 4px solid var(--ink);
+    padding: 1.2rem 2rem; display: flex; align-items: center; gap: 1rem;
+}
+.hero-banner h1 {
+    font-family: 'Bangers', cursive; font-size: 2.2rem;
+    color: var(--yellow); letter-spacing: 2px;
+    text-shadow: 3px 3px 0 var(--ink);
+}
+.hero-banner p  { color: #cce0ff; font-size: 0.9rem; margin: 0; }
+.live-dot {
+    width: 12px; height: 12px; background: #69ff74; border-radius: 50%;
+    border: 2px solid var(--ink); flex-shrink: 0;
+    animation: pulse 1.4s infinite;
+}
+@keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 #69ff7480; }
+    50%      { box-shadow: 0 0 0 6px #69ff7400; }
+}
+
+/* ── MAIN ── */
+main { padding: 2rem 1.5rem 3rem; max-width: 1400px; margin: 0 auto; }
+
+/* ── STAT CARDS ── */
+.stat-card {
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    border-radius: 6px; padding: 1.4rem 1.6rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.stat-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-h); }
+.accent-bar  { position: absolute; top: 0; left: 0; width: 100%; height: 6px; }
+.card-icon   { font-size: 2.4rem; line-height: 1; margin-bottom: 0.4rem; }
+.card-label  { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #777; }
+.card-value  { font-family: 'Bangers', cursive; font-size: 3rem; line-height: 1; letter-spacing: 2px; color: #bbb; }
+.card-sub    { font-size: 0.78rem; color: #aaa; margin-top: 0.2rem; font-style: italic; }
+.card-pill   {
+    display: inline-block; font-size: 0.7rem; font-weight: 900;
+    padding: 2px 10px; border-radius: 20px;
+    border: 2px solid var(--ink); margin-top: 0.5rem;
+}
+
+/* ── SECTION TITLE ── */
+.section-title {
+    font-family: 'Bangers', cursive; font-size: 1.6rem;
+    letter-spacing: 2px; border-bottom: 3px solid var(--ink);
+    padding-bottom: 4px; margin-bottom: 1.2rem;
+}
+
+/* ── CHART — barras horizontais ── */
+.chart-box {
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    border-radius: 6px; padding: 1.5rem;
+    height: 100%; display: flex; flex-direction: column; justify-content: center;
+}
+
+/* container de todas as linhas do gráfico */
+.mini-chart-h { display: flex; flex-direction: column; gap: 18px; }
+
+/* linha = label + trilho + percentual */
+.h-bar-row    { display: flex; align-items: center; gap: 10px; }
+
+/* rótulo à esquerda — largura fixa para alinhar os trilhos */
+.h-bar-label  {
+    width: 180px; flex-shrink: 0;
+    font-size: 0.78rem; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 1px; color: #555;
+    text-align: right;
+}
+
+/* trilho cinza que ocupa o restante */
+.h-bar-track  {
+    flex: 1; height: 32px;
+    background: #eee; border: 2px solid var(--ink);
+    border-radius: 4px; overflow: hidden;
+}
+
+/* barra colorida que cresce via width% */
+.h-bar-fill   {
+    height: 100%; min-width: 32px;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 8px;
+    transition: width 0.5s ease;
+    border-radius: 2px;
+}
+
+/* valor dentro da barra */
+.h-bar-val    { font-family: 'Bangers', cursive; font-size: 1rem; letter-spacing: 1px; }
+
+/* percentual à direita */
+.h-bar-pct    {
+    width: 38px; flex-shrink: 0;
+    font-size: 0.75rem; font-weight: 900; color: #aaa; text-align: left;
+}
+
+.chart-note { font-size: 0.75rem; color: #aaa; font-style: italic; margin-top: 1.2rem; text-align: center; padding-left: 10rem;}
+
+/* ── SIMULADOR ── */
+.sim-box {
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    border-radius: 6px; padding: 1.5rem;
+}
+.sim-box label { font-size: 0.82rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+.sim-box .form-control { border: 2px solid var(--ink); border-radius: 4px; }
+.sim-box .form-control:focus { border-color: var(--blue); box-shadow: 3px 3px 0 #1565c040; outline: none; }
+.sim-result {
+    background: var(--yellow); border: var(--border);
+    border-radius: 4px; padding: 1rem; text-align: center;
+}
+.sim-result-val { font-family: 'Bangers', cursive; font-size: 2.5rem; letter-spacing: 2px; color: var(--ink); }
+
+/* ── TABELA ── */
+.hq-table-wrap {
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    border-radius: 6px; overflow: hidden;
+}
+.hq-table thead th {
+    background: var(--ink); color: var(--yellow);
+    font-family: 'Bangers', cursive; font-size: 1rem;
+    letter-spacing: 1px; border: none; padding: 0.8rem 1rem;
+}
+.hq-table tbody tr { border-bottom: 2px solid #eee; transition: background 0.15s; }
+.hq-table tbody tr:hover { background: #fffde7; }
+.hq-table td { vertical-align: middle; padding: 0.75rem 1rem; font-size: 0.9rem; }
+.hq-table td img {
+    width: 44px; height: 60px; object-fit: cover;
+    border: 2px solid var(--ink); border-radius: 3px; display: block;
+}
+.sem-capa {
+    width: 44px; height: 60px; border: 2px solid var(--ink);
+    border-radius: 3px; background: #eee;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.55rem; color: #aaa; text-align: center; line-height: 1.3;
+}
+
+/* Status badges */
+.status-badge {
+    font-size: 0.7rem; font-weight: 900; letter-spacing: 1px;
+    text-transform: uppercase; padding: 3px 10px;
+    border-radius: 4px; border: 2px solid var(--ink);
+}
+.s-disponivel { background: #c8e6c9; color: #1b5e20; }
+.s-esgotado   { background: #ffcdd2; color: #b71c1c; }
+.s-reservado  { background: #fff9c4; color: #f57f17; }
+
+/* ── BOTÕES ── */
+.btn-hq {
+    font-size: 0.75rem; font-weight: 900;
+    border: 2px solid var(--ink); border-radius: 4px;
+    padding: 4px 12px; background: var(--yellow);
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-hq:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+.btn-hq.danger  { background: #ffcdd2; }
+.btn-hq.primary {
+    font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+    padding: 0.5rem 1.4rem; box-shadow: 3px 3px 0 var(--ink);
+}
+.btn-hq.primary:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+.btn-hq.ghost { background: #f5f5f5; }
+.btn-hq:disabled { opacity: .6; cursor: not-allowed; transform: none !important; }
+
+/* ── FORM ── */
+.hq-form {
+    background: #fff; border: var(--border); box-shadow: var(--shadow);
+    border-radius: 6px; padding: 1.5rem;
+}
+.hq-form label { font-size: 0.82rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+.hq-form .form-control,
+.hq-form .form-select { border: 2px solid var(--ink); border-radius: 4px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; }
+.hq-form .form-control:focus,
+.hq-form .form-select:focus { border-color: var(--blue); box-shadow: 3px 3px 0 #1565c040; outline: none; }
+
+/* ── MODAL ── */
+.modal-content { border: var(--border); box-shadow: var(--shadow-h); border-radius: 6px; }
+.modal-header  { background: var(--ink); border-radius: 3px 3px 0 0; }
+.modal-title   { font-family: 'Bangers', cursive; font-size: 1.5rem; color: var(--yellow); letter-spacing: 2px; }
+.modal-footer  { border-top: 2px solid #eee; }
+.modal-body .form-control,
+.modal-body .form-select { border: 2px solid var(--ink); }
+
+/* ── TOAST de feedback ── */
+.toast-hq {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    padding: 12px 22px; border-radius: 6px;
+    border: 3px solid var(--ink); box-shadow: var(--shadow);
+    font-family: 'Bangers', cursive; font-size: 1.1rem; letter-spacing: 1px;
+    animation: slideIn .3s ease;
+}
+.toast-ok   { background: #c8e6c9; color: #1b5e20; }
+.toast-erro { background: #ffcdd2; color: #b71c1c; }
+@keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* ── Rodapé informativo (painel usuário) ── */
+.info-usuario {
+    background: #fffde7; border: 2px dashed var(--ink);
+    padding: 12px 18px; border-radius: 6px;
+    font-size: 0.9rem; color: #555; text-align: center;
+}
+
+/* ── FOOTER ── */
+footer {
+    background: var(--ink); color: #aaa;
+    text-align: center; padding: 1rem;
+    font-size: 0.78rem;
+    border-top: 4px solid var(--yellow);
+}
+footer span { color: var(--yellow); font-weight: 700; }

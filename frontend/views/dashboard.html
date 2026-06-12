@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universo HQ — Painel Administrativo</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">UNIVERSO <span>HQ</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item"><a class="nav-link" href="/">Vitrine</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
+        <li class="nav-item ms-2"><span class="badge-admin">ADMIN</span></li>
+        <li class="nav-item ms-2">
+          <span id="nomeUsuario" class="nav-usuario"></span>
+        </li>
+        <li class="nav-item ms-2">
+          <button class="btn-hq danger" id="btnLogout">Sair</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO BANNER ══════════════════════════ -->
+<div class="hero-banner">
+  <div class="live-dot"></div>
+  <div>
+    <h1>PAINEL ADMINISTRATIVO</h1>
+    <p>Universo HQ &mdash; gerenciamento completo do acervo</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════ MAIN ════════════════════════════ -->
+<main>
+
+  <!-- TOAST de feedback -->
+  <div id="toast" class="toast-hq" style="display:none;"></div>
+
+  <!-- ── STAT CARDS ── -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:#69ff74;"></div>
+        <div class="card-icon">📚</div>
+        <div class="card-label">Total de HQs</div>
+        <div class="card-value" id="statTotal">—</div>
+        <span class="card-pill" style="background:#c8e6c9;color:#1b5e20;">● ACERVO</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:var(--yellow);"></div>
+        <div class="card-icon">✅</div>
+        <div class="card-label">Disponíveis</div>
+        <div class="card-value" id="statDisponiveis">—</div>
+        <span class="card-pill" style="background:#e3f2fd;color:#1565c0;">HOJE</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:var(--red);"></div>
+        <div class="card-icon">❌</div>
+        <div class="card-label">Esgotadas / Reservadas</div>
+        <div class="card-value" id="statEsgotadas">—</div>
+        <span class="card-pill" style="background:#ffcdd2;color:#b71c1c;">INDISPON.</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card">
+        <div class="accent-bar" style="background:var(--blue);"></div>
+        <div class="card-icon">💰</div>
+        <div class="card-label">Simulador de Desconto</div>
+        <div class="card-value" id="statDesconto">R$ —</div>
+        <span class="card-pill" style="background:#e8eaf6;color:#1a237e;" id="pillDesconto">CALCULE</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── SIMULADOR DE DESCONTO ── -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-lg-5">
+      <div class="section-title">🔢 Simulador de Desconto</div>
+      <div class="sim-box">
+        <div class="mb-3">
+          <label class="form-label">Preço original (R$)</label>
+          <input type="number" id="simPreco" class="form-control" placeholder="Ex: 59.90" min="0" step="0.01">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Desconto (%)</label>
+          <input type="number" id="simDesconto" class="form-control" placeholder="Ex: 15" min="0" max="100">
+        </div>
+        <button class="btn-hq primary w-100" id="btnSimular">CALCULAR</button>
+        <div class="sim-result mt-3">
+          <div style="font-size:0.75rem;font-weight:900;letter-spacing:1px;margin-bottom:4px;">PREÇO FINAL</div>
+          <div class="sim-result-val" id="simResultado">R$ —</div>
+          <div style="font-size:0.85rem;margin-top:4px;color:#555;" id="simEconomia">Preencha os campos acima</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-7">
+      <div class="section-title">📊 Status do Acervo</div>
+      <div class="chart-box">
+        <div id="miniChart" class="mini-chart-h">
+          <!-- Barras horizontais geradas via JS -->
+        </div>
+        <p class="chart-note">Distribuição de HQs por status no acervo atual</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FORMULÁRIO DE CADASTRO (primeiro) ── -->
+  <div class="section-title mb-3">➕ Cadastrar Nova HQ</div>
+  <div class="hq-form mb-4" id="formCadastroBox">
+    <div class="row g-3">
+
+      <div class="col-12 col-md-6">
+        <label class="form-label">Título da HQ *</label>
+        <input type="text" id="cTitulo" class="form-control" placeholder="Ex: X-Men: Dias de um Futuro Esquecido">
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Editora *</label>
+        <select id="cEditora" class="form-select">
+          <option value="">Selecione...</option>
+          <option>Marvel Comics</option>
+          <option>DC Comics</option>
+          <option>Panini</option>
+          <option>Image Comics</option>
+          <option>Dark Horse</option>
+          <option>JBC</option>
+          <option>Outra</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Gênero *</label>
+        <select id="cGenero" class="form-select">
+          <option value="">Selecione...</option>
+          <option>Super-herói</option>
+          <option>Manga</option>
+          <option>Graphic Novel</option>
+          <option>Terror / Fantasia</option>
+          <option>Ficção Científica</option>
+          <option>Aventura</option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Descrição *</label>
+        <textarea id="cDescricao" class="form-control" rows="2" placeholder="Breve sinopse da HQ..."></textarea>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Preço (R$) *</label>
+        <input type="number" id="cPreco" class="form-control" placeholder="0,00" min="0" step="0.01">
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Estoque (unid.)</label>
+        <input type="number" id="cEstoque" class="form-control" placeholder="0" min="0">
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Status *</label>
+        <select id="cStatus" class="form-select">
+          <option value="">Selecione...</option>
+          <option>Disponível</option>
+          <option>Esgotado</option>
+          <option>Reservado</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Capa (upload)</label>
+        <input type="file" id="cImagem" class="form-control" accept="image/jpeg,image/png,image/webp">
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label">— ou URL da Capa</label>
+        <input type="url" id="cImagemUrl" class="form-control" placeholder="https://...">
+      </div>
+
+      <div class="col-12 d-flex gap-2 mt-2">
+        <button class="btn-hq primary" id="btnCadastrar">CADASTRAR HQ</button>
+        <button class="btn-hq primary ghost" id="btnLimpar">LIMPAR</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── TABELA DE HQs (após formulário) ── -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="section-title mb-0">📚 Catálogo — Gerenciamento</div>
+    <input type="text" id="buscaTabela" class="form-control form-control-sm w-auto"
+           placeholder="🔍 Buscar HQ..." style="max-width:220px;">
+  </div>
+
+  <div class="hq-table-wrap mb-4">
+    <div class="table-responsive">
+      <table class="table hq-table mb-0">
+        <thead>
+          <tr>
+            <th>Capa</th>
+            <th>Título</th>
+            <th>Editora</th>
+            <th>Gênero</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaHqs">
+          <tr><td colspan="8" class="text-center py-3">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════ MODAL — EDITAR HQ ═══════════════════════ -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">✏️ EDITAR HQ</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="eId">
+        <div class="row g-3">
+          <div class="col-12 col-md-8">
+            <label class="form-label fw-bold">Título *</label>
+            <input type="text" id="eTitulo" class="form-control" placeholder="Título da HQ">
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Editora *</label>
+            <select id="eEditora" class="form-select">
+              <option>Marvel Comics</option><option>DC Comics</option>
+              <option>Panini</option><option>Image Comics</option>
+              <option>Dark Horse</option><option>JBC</option><option>Outra</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Gênero *</label>
+            <select id="eGenero" class="form-select">
+              <option>Super-herói</option><option>Manga</option>
+              <option>Graphic Novel</option><option>Terror / Fantasia</option>
+              <option>Ficção Científica</option><option>Aventura</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Preço (R$) *</label>
+            <input type="number" id="ePreco" class="form-control" min="0" step="0.01">
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Estoque</label>
+            <input type="number" id="eEstoque" class="form-control" min="0">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold">Descrição *</label>
+            <textarea id="eDescricao" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-bold">Status *</label>
+            <select id="eStatus" class="form-select">
+              <option>Disponível</option><option>Esgotado</option><option>Reservado</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-bold">Nova capa (upload)</label>
+            <input type="file" id="eImagem" class="form-control" accept="image/jpeg,image/png,image/webp">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold">— ou URL da nova capa</label>
+            <input type="url" id="eImagemUrl" class="form-control" placeholder="https://...">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-hq primary ghost" data-bs-dismiss="modal">CANCELAR</button>
+        <button class="btn-hq primary" id="btnSalvarEdicao">SALVAR ALTERAÇÕES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <span>UNIVERSO HQ</span> &middot; Painel Administrativo &middot; SENAI — Desenvolvimento Web
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ============================================================
+// dashboard.html — JavaScript do painel administrativo
+// ============================================================
+
+// ── Verificar sessão de admin ao carregar ─────────────────────
+(async () => {
+  try {
+    const resp = await fetch('/api/sessao', { credentials: 'include' });
+    if (!resp.ok) { window.location.href = '/login'; return; }
+    const data = await resp.json();
+    if (data.user.role !== 'admin') { window.location.href = '/painel'; return; }
+    document.getElementById('nomeUsuario').textContent = '👤 ' + data.user.username;
+  } catch { window.location.href = '/login'; }
+})();
+
+// ── Logout ────────────────────────────────────────────────────
+document.getElementById('btnLogout').addEventListener('click', async () => {
+  await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+  window.location.href = '/login';
+});
+
+// ── Toast de feedback ─────────────────────────────────────────
+function toast(msg, tipo = 'ok') {
+  const el = document.getElementById('toast');
+  el.textContent     = msg;
+  el.className       = 'toast-hq toast-' + tipo;
+  el.style.display   = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3500);
+}
+
+// ── Estatísticas ──────────────────────────────────────────────
+async function carregarEstatisticas() {
+  try {
+    const resp  = await fetch('/api/estatisticas', { credentials: 'include' });
+    const stats = await resp.json();
+    document.getElementById('statTotal').textContent       = stats.totalHqs;
+    document.getElementById('statDisponiveis').textContent = stats.disponiveis;
+    document.getElementById('statEsgotadas').textContent   = stats.esgotadas;
+    renderizarGrafico(stats);
+  } catch { /* silencioso */ }
+}
+
+function renderizarGrafico(stats) {
+  const total = stats.totalHqs || 1;
+  const chart = document.getElementById('miniChart');
+  const barras = [
+    { label: 'Disponíveis', valor: stats.disponiveis,              cor: '#69ff74', textCor: '#1b5e20' },
+    { label: 'Esgotadas / Reservadas', valor: stats.esgotadas,     cor: '#E53935', textCor: '#fff'    },
+  ];
+  chart.innerHTML = barras.map(b => {
+    const pct = Math.max(Math.round((b.valor / total) * 100), 4);
+    return `
+      <div class="h-bar-row">
+        <div class="h-bar-label">${b.label}</div>
+        <div class="h-bar-track">
+          <div class="h-bar-fill" style="width:${pct}%;background:${b.cor};">
+            <span class="h-bar-val" style="color:${b.textCor};">${b.valor}</span>
+          </div>
+        </div>
+        <div class="h-bar-pct">${pct}%</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Simulador de desconto ─────────────────────────────────────
+document.getElementById('btnSimular').addEventListener('click', () => {
+  const preco    = parseFloat(document.getElementById('simPreco').value);
+  const desconto = parseFloat(document.getElementById('simDesconto').value);
+
+  if (isNaN(preco) || isNaN(desconto) || preco < 0 || desconto < 0 || desconto > 100) {
+    toast('Preencha preço e desconto corretamente.', 'erro'); return;
+  }
+
+  const economia   = preco * (desconto / 100);
+  const precoFinal = preco - economia;
+
+  const fmt = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.getElementById('simResultado').textContent = fmt(precoFinal);
+  document.getElementById('simEconomia').textContent  = `Economia de ${fmt(economia)} (${desconto}%)`;
+  document.getElementById('statDesconto').textContent = fmt(precoFinal);
+  document.getElementById('pillDesconto').textContent  = `${desconto}% OFF`;
+});
+
+// ── Carregar tabela de HQs ────────────────────────────────────
+let todasHqsAdmin = [];
+
+async function carregarHqs() {
+  try {
+    const resp   = await fetch('/api/hqs', { credentials: 'include' });
+    todasHqsAdmin = await resp.json();
+    renderizarTabela(todasHqsAdmin);
+  } catch { toast('Erro ao carregar HQs.', 'erro'); }
+}
+
+function renderizarTabela(hqs) {
+  const tbody = document.getElementById('tabelaHqs');
+
+  if (!hqs.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-3">Nenhuma HQ cadastrada.</td></tr>';
+    return;
+  }
+
+  const statusClasse = { 'Disponível': 's-disponivel', 'Esgotado': 's-esgotado', 'Reservado': 's-reservado' };
+
+  tbody.innerHTML = hqs.map(hq => {
+    const imgSrc = hq.imagem
+      ? hq.imagem.startsWith('http') ? hq.imagem : hq.imagem
+      : null;
+    const capa = imgSrc
+      ? `<img src="${imgSrc}" alt="${hq.titulo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="sem-capa" style="display:none;">SEM<br>CAPA</div>`
+      : `<div class="sem-capa">SEM<br>CAPA</div>`;
+
+    const preco = parseFloat(hq.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const sc    = statusClasse[hq.status] || 's-reservado';
+
+    return `
+      <tr>
+        <td>${capa}</td>
+        <td><strong>${hq.titulo}</strong></td>
+        <td>${hq.editora}</td>
+        <td>${hq.genero}</td>
+        <td>${preco}</td>
+        <td>${hq.estoque} un.</td>
+        <td>
+          <span class="status-badge ${sc}" style="cursor:pointer;"
+                onclick="alterarStatus(${hq.id})" title="Clique para alternar status">
+            ${hq.status}
+          </span>
+        </td>
+        <td>
+          <button class="btn-hq me-1" onclick="abrirEdicao(${hq.id})">Editar</button>
+          <button class="btn-hq danger" onclick="deletarHq(${hq.id}, '${hq.titulo.replace(/'/g,"\\'")}')">Remover</button>
+        </td>
+      </tr>`;
+  }).join('');
+}
+
+// ── Busca na tabela ───────────────────────────────────────────
+document.getElementById('buscaTabela').addEventListener('input', function () {
+  const q = this.value.toLowerCase();
+  const filtradas = todasHqsAdmin.filter(h =>
+    h.titulo.toLowerCase().includes(q) ||
+    h.editora.toLowerCase().includes(q) ||
+    h.genero.toLowerCase().includes(q)
+  );
+  renderizarTabela(filtradas);
+});
+
+// ── Alterar status (ciclo) ────────────────────────────────────
+async function alterarStatus(id) {
+  try {
+    const resp = await fetch(`/api/hqs/${id}/status`, { method: 'PUT', credentials: 'include' });
+    const data = await resp.json();
+    if (resp.ok) { toast(data.mensagem); await carregarHqs(); await carregarEstatisticas(); }
+    else toast(data.erro || 'Erro ao alterar status.', 'erro');
+  } catch { toast('Erro de conexão.', 'erro'); }
+}
+
+// ── Deletar HQ ────────────────────────────────────────────────
+async function deletarHq(id, titulo) {
+  if (!confirm(`Remover "${titulo}" permanentemente?`)) return;
+  try {
+    const resp = await fetch(`/api/hqs/${id}`, { method: 'DELETE', credentials: 'include' });
+    const data = await resp.json();
+    if (resp.ok) { toast(data.mensagem); await carregarHqs(); await carregarEstatisticas(); }
+    else toast(data.erro || 'Erro ao remover.', 'erro');
+  } catch { toast('Erro de conexão.', 'erro'); }
+}
+
+// ── Cadastrar nova HQ ─────────────────────────────────────────
+document.getElementById('btnCadastrar').addEventListener('click', async () => {
+  const fd = new FormData();
+  fd.append('titulo',     document.getElementById('cTitulo').value.trim());
+  fd.append('editora',    document.getElementById('cEditora').value);
+  fd.append('genero',     document.getElementById('cGenero').value);
+  fd.append('descricao',  document.getElementById('cDescricao').value.trim());
+  fd.append('preco',      document.getElementById('cPreco').value);
+  fd.append('estoque',    document.getElementById('cEstoque').value || '0');
+  fd.append('status',     document.getElementById('cStatus').value);
+  fd.append('imagemUrl',  document.getElementById('cImagemUrl').value.trim());
+  const file = document.getElementById('cImagem').files[0];
+  if (file) fd.append('imagem', file);
+
+  try {
+    const resp = await fetch('/api/hqs', { method: 'POST', credentials: 'include', body: fd });
+    const data = await resp.json();
+    if (resp.ok) {
+      toast(data.mensagem);
+      document.getElementById('btnLimpar').click();
+      await carregarHqs();
+      await carregarEstatisticas();
+    } else {
+      toast(data.erro || 'Erro ao cadastrar.', 'erro');
+    }
+  } catch { toast('Erro de conexão.', 'erro'); }
+});
+
+document.getElementById('btnLimpar').addEventListener('click', () => {
+  ['cTitulo','cDescricao','cPreco','cImagemUrl'].forEach(id => document.getElementById(id).value = '');
+  ['cEditora','cGenero','cStatus'].forEach(id => document.getElementById(id).selectedIndex = 0);
+  document.getElementById('cEstoque').value = '';
+  document.getElementById('cImagem').value  = '';
+});
+
+// ── Abrir modal de edição ─────────────────────────────────────
+async function abrirEdicao(id) {
+  try {
+    const resp = await fetch(`/api/hqs/${id}`, { credentials: 'include' });
+    const hq   = await resp.json();
+
+    document.getElementById('eId').value         = hq.id;
+    document.getElementById('eTitulo').value      = hq.titulo;
+    document.getElementById('eDescricao').value   = hq.descricao;
+    document.getElementById('ePreco').value       = hq.preco;
+    document.getElementById('eEstoque').value     = hq.estoque;
+    document.getElementById('eImagemUrl').value   = hq.imagem || '';
+    document.getElementById('eImagem').value      = '';
+
+    // Selecionar opção correta nos selects
+    ['eEditora','eGenero','eStatus'].forEach(selId => {
+      const sel   = document.getElementById(selId);
+      const campo = selId.replace('e','').toLowerCase();
+      const val   = hq[campo];
+      for (let opt of sel.options) {
+        if (opt.value === val) { opt.selected = true; break; }
+      }
+    });
+
+    new bootstrap.Modal(document.getElementById('editModal')).show();
+  } catch { toast('Erro ao carregar HQ.', 'erro'); }
+}
+
+// ── Salvar edição ─────────────────────────────────────────────
+document.getElementById('btnSalvarEdicao').addEventListener('click', async () => {
+  const id = document.getElementById('eId').value;
+  const fd = new FormData();
+  fd.append('titulo',    document.getElementById('eTitulo').value.trim());
+  fd.append('editora',   document.getElementById('eEditora').value);
+  fd.append('genero',    document.getElementById('eGenero').value);
+  fd.append('descricao', document.getElementById('eDescricao').value.trim());
+  fd.append('preco',     document.getElementById('ePreco').value);
+  fd.append('estoque',   document.getElementById('eEstoque').value || '0');
+  fd.append('status',    document.getElementById('eStatus').value);
+  fd.append('imagemUrl', document.getElementById('eImagemUrl').value.trim());
+  const file = document.getElementById('eImagem').files[0];
+  if (file) fd.append('imagem', file);
+
+  try {
+    const resp = await fetch(`/api/hqs/${id}`, { method: 'PUT', credentials: 'include', body: fd });
+    const data = await resp.json();
+    if (resp.ok) {
+      toast(data.mensagem);
+      bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+      await carregarHqs();
+      await carregarEstatisticas();
+    } else {
+      toast(data.erro || 'Erro ao salvar.', 'erro');
+    }
+  } catch { toast('Erro de conexão.', 'erro'); }
+});
+
+// ── Inicializar ───────────────────────────────────────────────
+carregarEstatisticas();
+carregarHqs();
+</script>
+</body>
+</html>

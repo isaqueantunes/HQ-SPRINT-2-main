@@ -1,0 +1,410 @@
+/* ============================================================
+   style.css — Vitrine pública do Universo HQ
+   Preserva o design original + ajustes para conteúdo dinâmico
+   ============================================================ */
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+
+/* ── Fontes locais ── */
+@font-face {
+    font-family: 'Moliga';
+    src: url('/assets/fonts/Moliga DEMO.otf') format('opentype');
+    font-weight: normal; font-style: normal;
+}
+@font-face {
+    font-family: 'Simple';
+    src: url('/assets/fonts/The Simple Life.otf') format('opentype');
+    font-weight: normal; font-style: normal;
+}
+
+body {
+    font-family: 'Moliga', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #000;
+}
+
+/* ── HEADER ── */
+.header-container { background-color: #eace47; padding: 20px 0; width: 100%; }
+
+.logo { display: flex; align-items: center; }
+.logo img { height: 150px; width: auto; display: block; }
+
+.custom-navbar {
+    background-color: #1a1a1a;
+    width: 95%; max-width: 1200px;
+    margin: 0 auto; height: 65px;
+    border-radius: 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px;
+}
+
+.nav-links { display: flex; list-style: none; gap: 35px; margin: 0; align-items: center; flex-wrap: wrap; }
+.nav-links a { color: #FFF; font-family: "Moliga"; font-size: clamp(18px, 2vw, 30px); text-decoration: none; }
+.nav-links a:hover { color: #f1d34d; }
+
+.nav-icons { display: flex; gap: 20px; align-items: center; }
+.user-icon  { color: #fff; font-size: 20px; cursor: pointer; transition: color .2s; }
+.cart-icon  { color: #fff; font-size: 20px; cursor: pointer; transition: color .2s; }
+.user-icon:hover, .cart-icon:hover { color: #eace47; }
+
+/* ── HERO ── */
+.hero {
+    background-color: #eace47;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 10%; gap: 40px; flex-wrap: wrap;
+}
+.hero-content { flex: 1; max-width: 620px; display: flex; flex-direction: column; gap: 20px; }
+.hero-content h1 { font-size: clamp(40px, 6vw, 70px); color: white; margin: 0; font-family: 'Moliga'; }
+.hero-content p  { max-width: 680px; color: #FFF; font-family: "Moliga"; font-size: clamp(18px, 2vw, 24px); line-height: 1.4; margin: 0; }
+.hero-content p strong { color: black; }
+.hero-image { flex: 1; min-width: 280px; display: flex; justify-content: center; align-items: center; }
+.hero-image img { width: 100%; max-width: 520px; border-radius: 12px; object-fit: cover; }
+.btn-saiba-mais {
+    background-color: black; border-radius: 20px; border: none;
+    width: auto; max-width: 280px; padding: 16px 32px;
+    color: #eace47; font-weight: 400; cursor: pointer;
+    font-size: clamp(18px, 2vw, 32px); font-family: 'Moliga';
+    transition: color .2s;
+}
+.btn-saiba-mais:hover { color: #FFF; }
+
+/* ── SOBRE ── */
+.about { background-color: black; color: white; padding: 100px 10%; overflow: hidden; min-height: 100vh; }
+.about-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.about-text { flex: 1; }
+.about-text h2 { color: #FFF; font-family: "Moliga"; font-size: 60px; }
+.about-text p  { color: #FFF; font-family: "Moliga"; font-size: 25px; line-height: normal; }
+.about-img { position: relative; }
+.about-img img { width: 100%; max-width: 300px; position: relative; z-index: 2; }
+.circle-bg {
+    width: 320px; height: 320px; background-color: blue; border-radius: 50%;
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-45%, -50%); z-index: 1;
+}
+
+/* ── NOVIDADES ── */
+.news-section { background-color: #a71a22; }
+.carousel-control-prev-icon,
+.carousel-control-next-icon { filter: invert(1); }
+
+.news-card {
+    font-family: 'Moliga'; background: white; padding: 20px;
+    border-radius: 5px; height: 100%;
+    display: flex; flex-direction: column; align-items: center;
+}
+.news-card img  {
+    width: 100%; height: 380px; object-fit: cover;
+    margin-bottom: 15px; box-shadow: 5px 5px 0px black; flex-shrink: 0;
+}
+.news-card h5   { color: #000; font-family: "Moliga"; font-size: 46px; flex: 1; display: flex; align-items: center; text-align: center; }
+.btn-hq {
+    background-color: #ffff00; border-radius: 30px;
+    width: 250px; height: 84px;
+    color: #000; font-family: "Moliga"; font-size: 46px;
+    border: none; cursor: pointer; transition: transform .15s;
+    margin-top: auto; flex-shrink: 0;
+}
+.btn-hq:hover { transform: translateY(-2px); }
+/* ── CATÁLOGO ── */
+.catalog-section { background-color: #eace47; }
+
+.section-title {
+    font-family: 'Moliga'; font-size: 70px;
+    letter-spacing: 2px;
+}
+.titulo-cat {
+    color: #211C1F; font-family: "Moliga";
+    font-size: 70px; font-weight: 400;
+}
+.subtitle {
+    max-width: 920px; color: #211C1F; text-align: center;
+    font-family: "Simple"; font-size: clamp(18px, 2vw, 30px);
+    line-height: 1.6; margin: 0 auto;
+}
+
+/* Filtros */
+.btn-filter {
+    border-radius: 30px; background: #211C1F; padding: 12px 24px;
+    color: #FFF; font-family: "Moliga"; font-size: clamp(16px, 2vw, 28px);
+    white-space: nowrap; border: none; cursor: pointer; transition: background .2s;
+}
+.btn-filter.active, .btn-filter:hover { background: #eace47; color: #211C1F; outline: 3px solid #212529; outline-offset: 2px; }
+
+/* Cards do catálogo — altura uniforme com botão ancorado no rodapé */
+.catalog-item { display: flex; }
+
+.catalog-card {
+    background: white; padding: 10px; border-radius: 4px;
+    font-family: 'Moliga'; transition: transform .15s;
+    display: flex; flex-direction: column; width: 100%;
+}
+.catalog-card:hover { transform: translateY(-4px); }
+
+.card-img-placeholder {
+    background-color: #212529; aspect-ratio: 2/3;
+    width: 100%; overflow: hidden; flex-shrink: 0;
+}
+.card-img-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Área de texto cresce para empurrar o preço para baixo */
+.card-body-text {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 8px 2px 4px;
+}
+
+.catalog-card .desc  { color: #000; font-family: "Moliga"; font-size: 18px; line-height: 1.2; }
+.icons-catalog i     { color: black; cursor: pointer; }
+
+/* Preço sempre no rodapé do card */
+.card-preco {
+    text-align: center; color: #a71a22;
+    font-family: 'Moliga'; font-size: 16px; font-weight: bold;
+    padding: 6px 0 2px; margin-top: auto;
+    border-top: 1px solid #f0e8d0;
+}
+
+/* Estados de carregamento */
+.loading-state { color: #211C1F; font-family: 'Moliga'; font-size: 24px; padding: 40px 0; }
+.vazio-msg     { color: #211C1F; font-family: 'Moliga'; font-size: 24px; padding: 40px 0; }
+
+/* ── CONTATO ── */
+.contact-section { background-color: #1a1a1a; }
+.contact-box {
+    background: #2a2a2a; border: 2px solid #eace47;
+    border-radius: 10px; padding: 30px;
+    color: #fff; font-family: 'Moliga'; font-size: 20px;
+    line-height: 2.5;
+}
+.contact-box i { color: #eace47; margin-right: 10px; }
+
+/* ── FOOTER ── */
+.site-footer {
+    background: #1a1a1a; color: #aaa;
+    text-align: center; padding: 1rem;
+    font-family: 'Moliga'; font-size: 18px;
+    border-top: 4px solid #eace47;
+}
+.site-footer span { color: #eace47; }
+
+/* ══════════════════ RESPONSIVIDADE ══════════════════ */
+@media (max-width: 1024px) {
+    .custom-navbar { padding: 0 20px; }
+    .nav-links { gap: 20px; }
+    .hero { height: auto; padding: 60px 8%; flex-direction: column; text-align: center; }
+    .hero-content h1 { font-size: clamp(40px, 7vw, 70px); }
+    .hero-image img  { max-width: 260px; }
+    .about { padding: 80px 8%; }
+    .about-container { flex-direction: column; text-align: center; }
+    .about-text h2 { font-size: clamp(40px, 6vw, 70px); }
+    .about-img img { max-width: 260px; }
+    .section-title { font-size: clamp(32px, 5vw, 60px); text-align: center; }
+    .btn-hq, .btn-saiba-mais { width: auto; max-width: 250px; height: auto; font-size: 20px; padding: 12px 20px; }
+}
+
+@media (max-width: 768px) {
+    .logo img { height: 30px; }
+    .custom-navbar { flex-direction: column; height: auto; padding: 20px; gap: 15px; border-radius: 20px; }
+    .nav-links { flex-direction: column; gap: 12px; align-items: center; }
+    .hero { flex-direction: column; text-align: center; gap: 35px; padding: 50px 5%; }
+    .hero-content h1 { font-size: clamp(30px, 10vw, 50px); }
+    .hero-image img  { max-width: 220px; }
+    .about { padding: 60px 5%; }
+    .about-container { flex-direction: column; text-align: center; }
+    .section-title { font-size: 26px; text-align: center; }
+    .news-card h5 { font-size: 18px; text-align: center; }
+    .btn-hq { width: 100%; max-width: 200px; height: auto; font-size: 18px; padding: 10px; }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 26px; }
+    .hero-image img  { max-width: 180px; }
+    .about-text h2   { font-size: 24px; }
+    .about-img img   { max-width: 180px; }
+    .section-title   { font-size: 22px; }
+}
+
+/* ============================================================
+   CARRINHO DE COMPRAS — Gaveta lateral + badge + modal sucesso
+   ============================================================ */
+
+/* ── Badge no ícone do carrinho ── */
+.cart-wrapper {
+    position: relative; cursor: pointer;
+    display: flex; align-items: center;
+}
+.cart-badge {
+    position: absolute; top: -8px; right: -10px;
+    background: #a71a22; color: #fff;
+    font-size: 0.65rem; font-weight: 900;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #eace47;
+    animation: none;
+}
+@keyframes badgePop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.5); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+.badge-pop { animation: badgePop .35s ease; }
+
+/* ── Overlay escuro ── */
+.cart-overlay {
+    position: fixed; inset: 0; background: #00000060;
+    z-index: 1040; opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ── Gaveta lateral ── */
+.cart-drawer {
+    position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px;
+    height: 100dvh; background: #fff;
+    z-index: 1050; box-shadow: -8px 0 40px #0004;
+    display: flex; flex-direction: column;
+    transition: right .35s cubic-bezier(.4,0,.2,1);
+}
+.cart-drawer.open { right: 0; }
+
+/* Header da gaveta */
+.cart-header {
+    background: #1a1a1a; color: #eace47;
+    padding: 18px 20px; display: flex;
+    justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+}
+.cart-header h2 {
+    font-family: 'Moliga', sans-serif; font-size: 28px;
+    margin: 0; display: flex; align-items: center; gap: 10px;
+}
+.cart-close {
+    background: none; border: none; color: #fff;
+    font-size: 22px; cursor: pointer; padding: 4px 8px;
+    border-radius: 4px; transition: background .15s;
+}
+.cart-close:hover { background: #ffffff20; }
+
+/* Lista de itens — rola se ultrapassar */
+.cart-items {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+/* Estado vazio */
+.cart-empty {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #aaa; text-align: center; gap: 6px;
+    padding: 40px 0;
+}
+.cart-empty p     { font-size: 1rem; margin: 0; }
+.cart-empty small { font-size: 0.82rem; }
+
+/* Item individual */
+.cart-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #fafafa; border: 1px solid #eee;
+    border-radius: 8px; padding: 10px;
+}
+.cart-item img {
+    width: 54px; height: 72px; object-fit: cover;
+    border-radius: 4px; flex-shrink: 0;
+    border: 1px solid #ddd;
+}
+.cart-item-info   { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.cart-item-titulo { font-family: 'Moliga', sans-serif; font-size: 16px; line-height: 1.2; color: #1a1a1a; }
+.cart-item-preco-unit { font-size: 0.78rem; color: #888; }
+
+/* Controles de quantidade */
+.cart-item-controls { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.qty-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid #1a1a1a; background: #eace47;
+    font-size: 16px; font-weight: 900; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .1s;
+}
+.qty-btn:hover { transform: scale(1.15); }
+.qty-val { font-weight: 900; font-size: 0.95rem; min-width: 20px; text-align: center; }
+
+/* Coluna direita: total + lixeira */
+.cart-item-right  { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.cart-item-total  { font-family: 'Moliga', sans-serif; font-size: 17px; color: #a71a22; font-weight: bold; }
+.cart-item-del {
+    background: none; border: none; color: #ccc;
+    cursor: pointer; font-size: 14px; padding: 2px;
+    transition: color .15s;
+}
+.cart-item-del:hover { color: #a71a22; }
+
+/* Rodapé do carrinho */
+.cart-footer {
+    border-top: 2px solid #eee; padding: 16px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    flex-shrink: 0; background: #fff;
+}
+.cart-frete-info {
+    font-size: 0.82rem; color: #555;
+    background: #f9f6e8; border: 1px dashed #eace47;
+    border-radius: 6px; padding: 6px 12px; text-align: center;
+}
+.cart-frete-info i { color: #eace47; margin-right: 5px; }
+.cart-total-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.9rem; color: #555;
+}
+.cart-total-big {
+    font-family: 'Moliga', sans-serif; font-size: 22px;
+    color: #1a1a1a; font-weight: bold;
+}
+.cart-btn-comprar {
+    background: #eace47; border: 2px solid #1a1a1a;
+    border-radius: 10px; padding: 14px;
+    font-family: 'Moliga', sans-serif; font-size: 22px;
+    color: #1a1a1a; cursor: pointer; text-align: center;
+    transition: transform .15s, box-shadow .15s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.cart-btn-comprar:hover { transform: translateY(-2px); box-shadow: 0 4px 12px #eace4760; }
+.cart-btn-limpar {
+    background: none; border: none; color: #aaa;
+    font-size: 0.82rem; cursor: pointer; text-align: center;
+    padding: 4px; transition: color .15s;
+}
+.cart-btn-limpar:hover { color: #a71a22; }
+
+/* ── Botão "Adicionar" nos cards do catálogo ── */
+.btn-add-cart {
+    width: 100%; margin-top: 8px; padding: 7px 0;
+    background: #1a1a1a; color: #eace47;
+    border: none; border-radius: 6px;
+    font-family: 'Moliga', sans-serif; font-size: 16px;
+    cursor: pointer; transition: background .15s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-add-cart:hover { background: #a71a22; transform: translateY(-1px); }
+
+/* ── Modal de sucesso ── */
+.sucesso-modal { border-radius: 16px; border: 3px solid #eace47; }
+.sucesso-icon  { font-size: 3.5rem; margin-bottom: 12px; }
+.sucesso-titulo {
+    font-family: 'Moliga', sans-serif; font-size: 2rem;
+    color: #1a1a1a; margin-bottom: 6px;
+}
+.sucesso-sub   { color: #555; font-size: 0.9rem; margin-bottom: 16px; }
+.sucesso-itens {
+    background: #fafafa; border: 1px solid #eee;
+    border-radius: 8px; padding: 12px; text-align: left;
+    max-height: 180px; overflow-y: auto;
+}
+.sucesso-item {
+    display: flex; justify-content: space-between;
+    font-size: 0.88rem; padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+.sucesso-item:last-child { border-bottom: none; }
