@@ -12,11 +12,37 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/frontend/css/style.css">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
 </head>
 <body>
+
+  <!-- Seção landing -->
+
+  <section class="landing-section text-center text-white">
+        
+        <!-- Quadrinhos ao Redor -->
+        <img src="/frontend/assets/img/monica.jpg" alt="Turma da Mônica" class="comic-cover cover-1">
+        <img src="/frontend/assets/img/batman.jpg" alt="Batman" class="comic-cover cover-2">
+        <img src="/frontend/assets/img/amf.jpg" alt="Amazing Fantasy" class="comic-cover cover-3">
+        <img src="/frontend/assets/img/berserk.jpg" alt="Berserk" class="comic-cover cover-4">
+        <img src="/frontend/assets/img/vagabond.jpg" alt="Vagabond" class="comic-cover cover-5">
+        <img src="/frontend/assets/img/viland-saga-hq.jpg" alt="Anime/Manga" class="comic-cover cover-6">
+        <img src="/frontend/assets/img/pn.jpg" alt="Black Panther" class="comic-cover cover-7">
+
+        <!-- Bloco de Texto Central -->
+        <div class="container landing-content">
+            <h1 class="landing-title mb-3">
+                Sua biblioteca digital criativa<br>
+                HQs e mangás selecionados por fãs
+            </h1>
+            <p class="lead mb-4 fs-6 text-light opacity-75">Alugue ou compre num só lugar</p>
+            
+            <a href="#hero" class="btn btn-custom btn-lg shadow-sm">Acessar o universo</a>
+        </div>
+
+    </section>
 
 <!-- ══════════════════════ HEADER / NAVBAR ══════════════════════ -->
 <header class="header-container">
@@ -24,7 +50,7 @@
 
     <!-- Logo -->
     <div class="logo">
-      <img src="/assets/img/logo.png" alt="Universo HQ">
+      <img src="/frontend/assets/img/logo.png" alt="Universo HQ">
     </div>
 
     <!-- Links -->
@@ -50,17 +76,27 @@
 </header>
 
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>UNIVERSO HQ</h1>
-    <p>NÃO SABE O QUE LER AGORA? EXPLORE <strong>NOSSO CATÁLOGO DE HQS E MANGÁS</strong> COM A CURADORIA DOS <strong>NOSSOS EDITORES.</strong></p>
-    <button class="btn-saiba-mais" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
-      SAIBA MAIS
-    </button>
-  </div>
-  <div class="hero-image">
-    <img src="/assets/img/nerd_mascote__2_-removebg-preview.png" alt="Mascote Nerd">
-  </div>
+<section class="hero" id="hero">
+    
+    <!-- A BOX VERMELHA -->
+    <div class="hero-container">
+        
+        <!-- Lado Esquerdo -->
+        <div class="hero-image">
+            <img src="/frontend/assets/img/viland-saga-hq.jpg" alt="Vinland Saga Frente" class="book-front">
+            <img src="sua-imagem-vinland.jpg" alt="Vinland Saga Verso" class="book-back">
+        </div>
+
+        <!-- Lado Direito -->
+        <div class="hero-content">
+            <span>Oferta Especial</span>
+            <h1>As melhores HQs e Mangás de 2026!</h1>
+            <p>10% de desconto em compras acima de R$59 com o código: <strong>PRIMEIRACOMPRA</strong></p>
+            <button class="btn-saiba-mais">Compre Agora</button>
+        </div>
+
+    </div>
+
 </section>
 
 <!-- ══════════════════════════ SOBRE ══════════════════════════ -->
