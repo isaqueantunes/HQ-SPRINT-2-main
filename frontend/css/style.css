@@ -7,10 +7,20 @@
 
 /* ── Fontes locais ── */
 @font-face {
-    font-family: 'Moliga';
-    src: url('/assets/fonts/Moliga DEMO.otf') format('opentype');
+    font-family: 'Outfit';
+    src: url('/assets/fonts/Outfit-VariableFont_wght.tff') format('opentype');
     font-weight: normal; font-style: normal;
 }
+@font-face {
+
+    font-family: 'Moliga';
+
+    src: url('/assets/fonts/Moliga DEMO.otf') format('opentype');
+
+    font-weight: normal; font-style: normal;
+
+}
+
 @font-face {
     font-family: 'Simple';
     src: url('/assets/fonts/The Simple Life.otf') format('opentype');
@@ -18,7 +28,7 @@
 }
 
 body {
-    font-family: 'Moliga', sans-serif;
+    font-family: 'Outfit', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
     background-color: #000;
@@ -41,9 +51,44 @@ body {
     padding: 0 40px;
 }
 
-.nav-links { display: flex; list-style: none; gap: 35px; margin: 0; align-items: center; flex-wrap: wrap; }
-.nav-links a { color: #FFF; font-family: "Moliga"; font-size: clamp(18px, 2vw, 30px); text-decoration: none; }
-.nav-links a:hover { color: #f1d34d; }
+.nav-links { 
+    display: flex; 
+    list-style: none; 
+    gap: 30px; 
+    margin: 0; 
+    align-items: center; 
+    flex-wrap: wrap; 
+}
+
+.nav-links a { 
+    color: #FFF; 
+    font-family: "Outfit", sans-serif; 
+    font-size: clamp(16px, 1.2vw, 20px); /* Ajustado para um tamanho mais equilibrado */
+    text-decoration: none; 
+    position: relative; /* Necessário para a animação */
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+/* Efeito de sublinhado animado */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #eace47;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover { 
+    color: #eace47; 
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* O sublinhado cresce suavemente */
+}
 
 .nav-icons { display: flex; gap: 20px; align-items: center; }
 .user-icon  { color: #fff; font-size: 20px; cursor: pointer; transition: color .2s; }
@@ -87,19 +132,22 @@ body {
 
 /* Efeito dos dois livros */
 .book-front {
-    max-width: 250px;
+    max-width: 500px; /* Aumentado o tamanho do livro da frente */
     width: 100%;
     z-index: 2;
     filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.4));
+    position: relative;
 }
 
 .book-back {
-    max-width: 210px;
+    max-width: 470px; /* Aumentado o tamanho do livro de trás */
     width: 100%;
-    transform: rotate(-15deg) skewX(5deg); /* Inclinação 3D */
+    transform: rotate(-15deg) skewX(5deg); /* Inclinação 3D original */
     filter: drop-shadow(15px 15px 12px rgba(0,0,0,0.5));
-    margin-left: -45px; /* Sobreposição de leve */
-    margin-top: 40px;
+    
+    /* Ajustes para zerar o espaçamento e grudar os livros */
+    margin-left: -160px; /* Margem negativa maior para compensar o novo tamanho e colar no da frente */
+    margin-top: 35px;
     z-index: 1;
 }
 
@@ -127,7 +175,7 @@ body {
     font-size: clamp(32px, 4vw, 48px); 
     color: white; 
     margin: 0; 
-    font-family: 'Moliga'; 
+    font-family: 'Outfit'; 
     font-weight: 800;
     line-height: 1.2;
 }
@@ -135,7 +183,7 @@ body {
 .hero-content p { 
     max-width: 480px; 
     color: #FFF; 
-    font-family: "Moliga"; 
+    font-family: "Outfit"; 
     font-size: clamp(16px, 1.8vw, 20px); 
     line-height: 1.4; 
     margin: 0; 
@@ -162,7 +210,7 @@ body {
     font-weight: 700; 
     cursor: pointer;
     font-size: clamp(16px, 1.5vw, 18px); 
-    font-family: 'Moliga';
+    font-family: 'Outfit';
     text-transform: uppercase;
     transition: transform .2s, background-color .2s;
 }
@@ -196,8 +244,8 @@ body {
 /* ── SOBRE ── */
 
 /* ══════════════════════════════════════════════
-       SOBRE — Seção do livro aberto
-    ══════════════════════════════════════════════ */
+        SOBRE — Seção do livro aberto
+     ══════════════════════════════════════════════ */
 
     .about {
       background-color: #8B1A1A;
@@ -381,11 +429,11 @@ body {
 .catalog-section { background-color: #eace47; }
 
 .section-title {
-    font-family: 'Moliga'; font-size: 70px;
+    font-family: 'Outfit'; font-size: 70px;
     letter-spacing: 2px;
 }
 .titulo-cat {
-    color: #211C1F; font-family: "Moliga";
+    color: #211C1F; font-family: "Outfit";
     font-size: 70px; font-weight: 400;
 }
 .subtitle {
@@ -397,7 +445,7 @@ body {
 /* Filtros */
 .btn-filter {
     border-radius: 30px; background: #211C1F; padding: 12px 24px;
-    color: #FFF; font-family: "Moliga"; font-size: clamp(16px, 2vw, 28px);
+    color: #FFF; font-family: "Outfit"; font-size: clamp(16px, 2vw, 28px);
     white-space: nowrap; border: none; cursor: pointer; transition: background .2s;
 }
 .btn-filter.active, .btn-filter:hover { background: #eace47; color: #211C1F; outline: 3px solid #212529; outline-offset: 2px; }
@@ -407,7 +455,7 @@ body {
 
 .catalog-card {
     background: white; padding: 10px; border-radius: 4px;
-    font-family: 'Moliga'; transition: transform .15s;
+    font-family: 'Outfit'; transition: transform .15s;
     display: flex; flex-direction: column; width: 100%;
 }
 .catalog-card:hover { transform: translateY(-4px); }
@@ -425,27 +473,27 @@ body {
     padding: 8px 2px 4px;
 }
 
-.catalog-card .desc  { color: #000; font-family: "Moliga"; font-size: 18px; line-height: 1.2; }
+.catalog-card .desc  { color: #000; font-family: "Outfit"; font-size: 18px; line-height: 1.2; }
 .icons-catalog i     { color: black; cursor: pointer; }
 
 /* Preço sempre no rodapé do card */
 .card-preco {
     text-align: center; color: #a71a22;
-    font-family: 'Moliga'; font-size: 16px; font-weight: bold;
+    font-family: 'Outfit'; font-size: 16px; font-weight: bold;
     padding: 6px 0 2px; margin-top: auto;
     border-top: 1px solid #f0e8d0;
 }
 
 /* Estados de carregamento */
-.loading-state { color: #211C1F; font-family: 'Moliga'; font-size: 24px; padding: 40px 0; }
-.vazio-msg     { color: #211C1F; font-family: 'Moliga'; font-size: 24px; padding: 40px 0; }
+.loading-state { color: #211C1F; font-family: 'Outfit'; font-size: 24px; padding: 40px 0; }
+.vazio-msg     { color: #211C1F; font-family: 'Outfit'; font-size: 24px; padding: 40px 0; }
 
 /* ── CONTATO ── */
 .contact-section { background-color: #1a1a1a; }
 .contact-box {
     background: #2a2a2a; border: 2px solid #eace47;
     border-radius: 10px; padding: 30px;
-    color: #fff; font-family: 'Moliga'; font-size: 20px;
+    color: #fff; font-family: 'Outfit'; font-size: 20px;
     line-height: 2.5;
 }
 .contact-box i { color: #eace47; margin-right: 10px; }
@@ -454,7 +502,7 @@ body {
 .site-footer {
     background: #1a1a1a; color: #aaa;
     text-align: center; padding: 1rem;
-    font-family: 'Moliga'; font-size: 18px;
+    font-family: 'Outfit'; font-size: 18px;
     border-top: 4px solid #eace47;
 }
 .site-footer span { color: #eace47; }
@@ -548,7 +596,7 @@ body {
     flex-shrink: 0;
 }
 .cart-header h2 {
-    font-family: 'Moliga', sans-serif; font-size: 28px;
+    font-family: 'Outfit', sans-serif; font-size: 28px;
     margin: 0; display: flex; align-items: center; gap: 10px;
 }
 .cart-close {
@@ -586,7 +634,7 @@ body {
     border: 1px solid #ddd;
 }
 .cart-item-info   { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-.cart-item-titulo { font-family: 'Moliga', sans-serif; font-size: 16px; line-height: 1.2; color: #1a1a1a; }
+.cart-item-titulo { font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.2; color: #1a1a1a; }
 .cart-item-preco-unit { font-size: 0.78rem; color: #888; }
 
 /* Controles de quantidade */
@@ -603,7 +651,7 @@ body {
 
 /* Coluna direita: total + lixeira */
 .cart-item-right  { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
-.cart-item-total  { font-family: 'Moliga', sans-serif; font-size: 17px; color: #a71a22; font-weight: bold; }
+.cart-item-total  { font-family: 'Outfit', sans-serif; font-size: 17px; color: #a71a22; font-weight: bold; }
 .cart-item-del {
     background: none; border: none; color: #ccc;
     cursor: pointer; font-size: 14px; padding: 2px;
@@ -628,13 +676,13 @@ body {
     font-size: 0.9rem; color: #555;
 }
 .cart-total-big {
-    font-family: 'Moliga', sans-serif; font-size: 22px;
+    font-family: 'Outfit', sans-serif; font-size: 22px;
     color: #1a1a1a; font-weight: bold;
 }
 .cart-btn-comprar {
     background: #eace47; border: 2px solid #1a1a1a;
     border-radius: 10px; padding: 14px;
-    font-family: 'Moliga', sans-serif; font-size: 22px;
+    font-family: 'Outfit', sans-serif; font-size: 22px;
     color: #1a1a1a; cursor: pointer; text-align: center;
     transition: transform .15s, box-shadow .15s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -652,7 +700,7 @@ body {
     width: 100%; margin-top: 8px; padding: 7px 0;
     background: #1a1a1a; color: #eace47;
     border: none; border-radius: 6px;
-    font-family: 'Moliga', sans-serif; font-size: 16px;
+    font-family: 'Outfit', sans-serif; font-size: 16px;
     cursor: pointer; transition: background .15s, transform .1s;
     display: flex; align-items: center; justify-content: center; gap: 6px;
 }
@@ -662,7 +710,7 @@ body {
 .sucesso-modal { border-radius: 16px; border: 3px solid #eace47; }
 .sucesso-icon  { font-size: 3.5rem; margin-bottom: 12px; }
 .sucesso-titulo {
-    font-family: 'Moliga', sans-serif; font-size: 2rem;
+    font-family: 'Outfit', sans-serif; font-size: 2rem;
     color: #1a1a1a; margin-bottom: 6px;
 }
 .sucesso-sub   { color: #555; font-size: 0.9rem; margin-bottom: 16px; }
