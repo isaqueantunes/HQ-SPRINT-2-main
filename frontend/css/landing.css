@@ -19,7 +19,7 @@
  }
 
 /* Conteúdo */
-    .landing-content {
+.landing-content {
      z-index: 10;
     max-width: 600px;
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
@@ -38,7 +38,7 @@
         display: inline-block;
     }
 
- .btn .btn-custom:hover {
+ .btn.btn-custom:hover {
             background-color: #d4b032;
             transform: scale(1.05);
             color: #2b2b2b;
